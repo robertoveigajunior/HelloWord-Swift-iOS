@@ -17,9 +17,13 @@ class EndViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lbLocations.text = self.location
+        self.lbLocations.text = self.location!
     }
 
+    @IBAction func doBack(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

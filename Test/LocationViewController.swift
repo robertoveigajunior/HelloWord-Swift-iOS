@@ -14,7 +14,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var imgPin: UIImageView!
     @IBOutlet weak var btEnd: UIButton!
-    
+    @IBOutlet weak var lbNote: UILabel!
     @IBOutlet weak var aiLoading: UIActivityIndicatorView!
     var avatar: UIImage!
     let locationManager = CLLocationManager()
@@ -34,10 +34,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func initCommon() {
+        self.lbNote.hidden = true
         self.btEnd.hidden = true
         self.imgAvatar.image = self.avatar
         self.imageRadius()
-        self.askAuthorization()
     }
     
     private func askAuthorization() {
@@ -58,6 +58,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         self.btEnd.hidden = false
         self.locationManager.stopUpdatingLocation()
         self.aiLoading.stopAnimating()
+        self.lbNote.hidden = false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -70,11 +71,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func doDone(sender: UIButton) {
-        self.performSegueWithIdentifier("sgEnd", sender: String(self.locationManager.location))
+        let str = self.locationManager.location!.description
+        
+        self.performSegueWithIdentifier("sgEnd", sender: String(str))
     }
     
     @IBAction func doLocation(sender: AnyObject) {
-        self.locationManager.startUpdatingLocation()
+        self.askAuthorization()
     }
     
 }

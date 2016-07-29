@@ -15,6 +15,8 @@ UINavigationControllerDelegate {
     
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var btNext: UIButton!
+    @IBOutlet weak var aiLoading: UIActivityIndicatorView!
+    @IBOutlet weak var btLogout: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,14 +75,21 @@ UINavigationControllerDelegate {
     }
     
     @IBAction func doLogout(sender: AnyObject) {
+        self.aiLoading.startAnimating()
+        self.btLogout.hidden = true
         if let session = Twitter.sharedInstance().sessionStore.session() {
             let client = TWTRAPIClient()
             client.loadUserWithID(session.userID) { (user, error) -> Void in
                 if let user = user {
+                    self.aiLoading.stopAnimating()
+                    self.btLogout.hidden = false
                     Twitter.sharedInstance().sessionStore.logOutUserID(user.userID)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
+        } else {
+            self.aiLoading.stopAnimating()
+            self.btLogout.hidden = false
         }
     }
 }

@@ -53,8 +53,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.btEnd.hidden = false
         self.locationManager.stopUpdatingLocation()
         self.aiLoading.stopAnimating()
@@ -63,7 +61,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let view = segue.destinationViewController as! EndViewController
-        view.location = sender! as! String
+        view.location = sender as! CLLocation
     }
     
     @IBAction func doBack(sender: UIButton) {
@@ -71,9 +69,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func doDone(sender: UIButton) {
-        let str = self.locationManager.location!.description
-        
-        self.performSegueWithIdentifier("sgEnd", sender: String(str))
+        if let str = self.locationManager.location {
+            self.performSegueWithIdentifier("sgEnd", sender: str)
+        }
     }
     
     @IBAction func doLocation(sender: AnyObject) {

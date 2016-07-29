@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,18 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star" translatesAutoresizingMaskIntoConstraints="NO" id="v7a-3o-aX6">
-                                <rect key="frame" x="221" y="218" width="159" height="164"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OLÁ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8O-gy-eXt">
+                                <rect key="frame" x="248" y="517" width="104" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="164" id="GBe-i8-9bi"/>
-                                    <constraint firstAttribute="width" constant="159" id="MyS-kr-JIw"/>
+                                    <constraint firstAttribute="width" constant="104" id="FQC-sn-0BH"/>
+                                    <constraint firstAttribute="height" constant="63" id="stJ-F6-rbN"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.44705882349999998" green="0.77647058820000003" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.14280210364580959" green="0.1724899041060588" blue="0.36899533864592959" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1176470588" green="0.13725490200000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="v7a-3o-aX6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JPY-lz-p0k"/>
-                            <constraint firstItem="v7a-3o-aX6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mx7-ZE-bY3"/>
+                            <constraint firstItem="O8O-gy-eXt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IcI-6E-9nN"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="O8O-gy-eXt" secondAttribute="bottom" constant="20" id="eKF-Og-lEt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +40,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Star" width="512" height="512"/>
-    </resources>
 </document>

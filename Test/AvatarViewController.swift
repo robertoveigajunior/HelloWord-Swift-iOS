@@ -8,22 +8,60 @@
 
 import UIKit
 import Crashlytics
+import TwitterKit
 
-class AvatarViewController: UIViewController {
+class AvatarViewController: UIViewController, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
     
-    @IBOutlet weak var imgAvatar: UIView!
+    @IBOutlet weak var imgAvatar: UIImageView!
+    @IBOutlet weak var btNext: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initCommon()
+    }
+    
+    private func setTitles() {
+        self.btNext.setTitle("btNext.normalTitle".localized, forState: .Normal)
+    }
+    
+    private func imageRadius() {
+        self.imgAvatar.layer.cornerRadius = self.imgAvatar.frame.width/2
+        self.imgAvatar.layer.masksToBounds = true
+        self.imgAvatar.setBorder
+    }
+    
+    private func initCommon() {
+        self.btNext.hidden = true
+        self.imageRadius()
         Answers.logContentViewWithName("Tweet", contentType: "Video", contentId: "1234", customAttributes: ["Favorites Count":20, "Screen Orientation":"Landscape"])
     }
     
     private func openCamera() {
-    
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
     }
     
     private func nextPage() {
-        
+        self.performSegueWithIdentifier("sgRecorder", sender: self.imgAvatar.image)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let view = segue.destinationViewController as! LocationViewController
+        view.avatar = sender as! UIImage
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+        let selectedImage : UIImage = image
+        self.imgAvatar.image = selectedImage
+        AppDelegate().setAvatar(selectedImage)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.btNext.hidden = false
     }
     
     @IBAction func tapOnAvatar(sender: AnyObject) {
@@ -34,4 +72,15 @@ class AvatarViewController: UIViewController {
         self.nextPage()
     }
     
+    @IBAction func doLogout(sender: AnyObject) {
+        if let session = Twitter.sharedInstance().sessionStore.session() {
+            let client = TWTRAPIClient()
+            client.loadUserWithID(session.userID) { (user, error) -> Void in
+                if let user = user {
+                    Twitter.sharedInstance().sessionStore.logOutUserID(user.userID)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+        }
+    }
 }

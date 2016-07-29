@@ -17,25 +17,27 @@ import TwitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var user: User!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with(
             [
                 Crashlytics.self,
                 Twitter.self
-                
             ])
         
-        self.logUser()
         return true
     }
     
-    func logUser() {
-        //Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
-        //Crashlytics.sharedInstance().setUserIdentifier("12345")
-        //Crashlytics.sharedInstance().setUserName("Test User")
+    func currentUser() -> User {
+        return self.user
     }
-
+    
+    func setAvatar(avatar: UIImage!) {
+        self.user = User()
+        self.user.avatar = avatar
+    }
 
     func applicationWillResignActive(application: UIApplication) {
     }

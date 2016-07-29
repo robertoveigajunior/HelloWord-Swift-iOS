@@ -10,25 +10,25 @@ import UIKit
 import TwitterKit
 
 class AccessViewController: UIViewController {
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        User.isLogged {
+            self.performSegueWithIdentifier("sgLogged", sender: nil)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logInButton = TWTRLogInButton { (session, error) in
-            if let unwrappedSession = session {
-                let alert = UIAlertController(title: "Logged In",
-                    message: "User \(unwrappedSession.userName) has logged in",
-                    preferredStyle: UIAlertControllerStyle.Alert
-                )
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+            if (session != nil) {
+                print("signed in as \(session!.userName)")
                 self.performSegueWithIdentifier("sgLogged", sender: nil)
             } else {
-                NSLog("Login error: %@", error!.localizedDescription);
+                print("error: \(error!.localizedDescription)")
             }
-        }
-        
+        })
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
-
     }
 }

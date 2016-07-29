@@ -9,9 +9,10 @@
 import UIKit
 import MapKit
 import Alamofire
+import SwiftyJSON
 
 class EndViewController: UIViewController {
-
+    
     @IBOutlet weak var aiLoading: UIActivityIndicatorView!
     @IBOutlet weak var txtGitResults: UITextView!
     @IBOutlet weak var lbLocations: UILabel!
@@ -25,28 +26,33 @@ class EndViewController: UIViewController {
         self.lbLocations.text = "Latitude: \(self.location.coordinate.latitude) - Longitude: \(self.location.coordinate.longitude)"
     }
     
-    private func getGitRepositoryes(user: String) {
+    private func getGitRepositories(user: String) {
         self.aiLoading.startAnimating()
-        let url = "https://api.github.com/users/\(user)/repos"
+        let url = "https://api.github.com/users/\(user.trim())/repos"
         Alamofire.request(.GET, url)
-            .responseJSON { response in
+            .responseJSON { response in switch response.result {
+            case .Success(let data):
+                let json = JSON(data)
+                self.txtGitResults.text = ""
+                json.forEach({ (result, json) in
+                    self.txtGitResults.text =  "\(self.txtGitResults.text)\n \(json["name"].stringValue)"
+                })
                 self.aiLoading.stopAnimating()
-                self.txtGitResults.text = String(response.response!)
-            }
-            .responseString { response in
-                // print response as string for debugging, testing, etc.
-                print(response.result.value)
-                print(response.result.error)
+                self.view.endEditing(true)
+            case .Failure(let error):
+                self.txtGitResults.text = "Request failed with error: \(error)"
+                }
+                self.aiLoading.stopAnimating()
         }
     }
-
+    
     @IBAction func doBack(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func doGet(sender: AnyObject) {
         if self.txtGitUser.text != "" {
-            self.getGitRepositoryes(self.txtGitUser.text!)
+            self.getGitRepositories(self.txtGitUser.text!)
         } else {
             self.txtGitResults.text = "*usuário necessário"
         }

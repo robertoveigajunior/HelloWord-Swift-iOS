@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension String
+{
+    func trim() -> String {
+        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+    }
+}
+
 extension UIImageView {
     var setBorder: UIImageView {
         self.layer.borderWidth = 6

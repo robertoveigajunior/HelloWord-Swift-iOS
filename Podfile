@@ -6,7 +6,7 @@ target 'Test' do
     use_frameworks!
     pod 'Alamofire'
     pod 'IQKeyboardManager'
-    
+    pod 'SwiftyJSON'    
     # Pods for Test
     
     target 'TestTests' do

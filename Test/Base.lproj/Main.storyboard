@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Access View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="AccessViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.14280210360000001" green="0.17248990410000001" blue="0.3689953386" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="EiV-Yq-Kmj" kind="presentation" identifier="sgLogged" id="frv-BS-oDk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Avatar View Controller-->
+        <scene sceneID="bjf-zo-Dth">
+            <objects>
+                <viewController id="EiV-Yq-Kmj" customClass="AvatarViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fSb-cA-5tI"/>
+                        <viewControllerLayoutGuide type="bottom" id="VOX-ub-F0o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hd7-M2-l4J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6v-s9-PE7">
+                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4fM-bL-dhq"/>
+                                    <constraint firstAttribute="height" constant="240" id="QeY-9a-2uY"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="YCA-II-kJP" appends="YES" id="8yg-zp-Log"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UA-xE-tjb">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0Zl-tT-JUj"/>
+                                </constraints>
+                                <state key="normal" title="PRÓXIMO">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doNext:" destination="EiV-Yq-Kmj" eventType="touchUpInside" id="m3m-eD-5aT"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="escolha o seu AVATAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nv-0k-ghr">
+                                <rect key="frame" x="20" y="98" width="560" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8DU-C6-jrP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14280210360000001" green="0.17248990410000001" blue="0.3689953386" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="u6v-s9-PE7" firstAttribute="top" secondItem="5nv-0k-ghr" secondAttribute="bottom" constant="32" id="3Ta-Iz-Vat"/>
+                            <constraint firstAttribute="trailing" secondItem="5nv-0k-ghr" secondAttribute="trailing" constant="20" id="3hW-yh-cim"/>
+                            <constraint firstItem="VOX-ub-F0o" firstAttribute="top" secondItem="2UA-xE-tjb" secondAttribute="bottom" id="Eek-Ei-Y0d"/>
+                            <constraint firstItem="u6v-s9-PE7" firstAttribute="centerX" secondItem="hd7-M2-l4J" secondAttribute="centerX" id="GEP-5e-Y96"/>
+                            <constraint firstItem="2UA-xE-tjb" firstAttribute="leading" secondItem="hd7-M2-l4J" secondAttribute="leading" id="L6c-Fp-4uN"/>
+                            <constraint firstItem="5nv-0k-ghr" firstAttribute="leading" secondItem="hd7-M2-l4J" secondAttribute="leading" constant="20" id="OVr-Ak-xdg"/>
+                            <constraint firstItem="u6v-s9-PE7" firstAttribute="centerY" secondItem="hd7-M2-l4J" secondAttribute="centerY" id="S52-Mf-o4S"/>
+                            <constraint firstItem="5nv-0k-ghr" firstAttribute="top" secondItem="fSb-cA-5tI" secondAttribute="bottom" constant="78" id="gta-tL-WuJ"/>
+                            <constraint firstAttribute="trailing" secondItem="2UA-xE-tjb" secondAttribute="trailing" id="sPo-rz-CWO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageTap" destination="YCA-II-kJP" id="DfM-Tt-qDZ"/>
+                        <outlet property="imgAvatar" destination="u6v-s9-PE7" id="6x2-0x-Ypc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DaB-uW-Tdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="YCA-II-kJP">
+                    <connections>
+                        <action selector="tapOnAvatar:" destination="EiV-Yq-Kmj" id="BcE-vU-YbT"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1253" y="262"/>
+        </scene>
+    </scenes>
+</document>

@@ -2,10 +2,10 @@
 
 Frameworks:
 
-Fabric
-Alamofire
-IQKeyboardManager
-SwiftyJSON
-TwitterKit
-Crashlytics
-Answers 
+Fabric,
+Alamofire,
+IQKeyboardManager,
+SwiftyJSON,
+TwitterKit,
+Crashlytics,
+Answers

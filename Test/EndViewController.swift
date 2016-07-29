@@ -33,7 +33,7 @@ class EndViewController: UIViewController {
             .responseJSON { response in switch response.result {
             case .Success(let data):
                 let json = JSON(data)
-                self.txtGitResults.text = ""
+                self.txtGitResults.text = "Lista de repositórios:\n\n"
                 json.forEach({ (result, json) in
                     self.txtGitResults.text =  "\(self.txtGitResults.text)\n \(json["name"].stringValue)"
                 })

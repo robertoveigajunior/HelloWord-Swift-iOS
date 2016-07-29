@@ -1,2 +1,11 @@
 # Test
-Just for test
+
+Frameworks:
+
+Fabric
+Alamofire
+IQKeyboardManager
+SwiftyJSON
+TwitterKit
+Crashlytics
+Answers 

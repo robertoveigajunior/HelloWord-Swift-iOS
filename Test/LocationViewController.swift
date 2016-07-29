@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Crashlytics
+
 
 class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -22,6 +24,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initCommon()
+        self.trackAnswers()
+    }
+    
+    private func trackAnswers() {
+        Answers.logContentViewWithName("Tweet", contentType: "Video", contentId: "1234", customAttributes: ["Favorites Count":20, "Screen Orientation":"Landscape"])
+
     }
     
     private func imageRadius() {

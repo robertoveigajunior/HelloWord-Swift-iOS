@@ -1,4 +1,4 @@
-# HelloWord em Swift com algumas APIs (Frameworks) em Objective-C
+# HelloWorld em Swift com algumas APIs (Frameworks) em Objective-C
 
 Frameworks:
 
